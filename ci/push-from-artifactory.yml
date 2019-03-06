@@ -20,7 +20,7 @@ resources:
 - name: deploy-app-resource
   type: cf
   source:
-    api: https://api.run.pivotal.io
+    api: ((cf-api))
     username: ((cf-user))    
     password: ((cf-password))
     organization: ((cf-org))    
@@ -34,19 +34,7 @@ jobs:
     trigger: true
   - get: councourse-it-sources
   - task: list-repo-content
-    config:
-      platform: linux
-      inputs:
-      - name: artifactory-repo
-      image_resource:
-        type: docker-image
-        source: { repository: ubuntu }
-      run:
-        path: sh
-        args:
-        - -exc
-        - |
-          ls -R ./artifactory-repo  
+    file: councourse-it-sources/ci/tasks/list-contents.xml
   - put: deploy-app-resource
     params:
       manifest: councourse-it-sources/manifest.yml

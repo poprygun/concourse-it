@@ -1,10 +1,3 @@
-Based on [instructions](https://medium.com/concourse-ci/getting-started-with-concourse-ci-on-macos-fb3a49a8e6b4)
-
-https://specify.io/how-tos/concourse-ci-continious-integration-and-delivery-of-microservices
-
-https://github.com/emerald-squad/artifactory-resource
-
-
 ## Start Concourse
 
 ```bash
@@ -32,14 +25,19 @@ fly login -t from-artifactory -u test -p test -c http://127.0.0.1:8080/
 ## Fly pipeline commands
 
 ```bash
-fly -t from-artifactory set-pipeline -p from-artifactory-pipeline -c push-from-artifactory.yml -l cf-creds.yml
+fly -t from-artifactory set-pipeline -p from-artifactory-pipeline -c ci/push-from-artifactory.yml -l ci/cf-creds.yml
 fly -t from-artifactory unpause-pipeline -p from-artifactory-pipeline
 fly -t from-artifactory trigger-job -j from-artifactory-pipeline/trigger-when-new-file-is-added-to-artifactory -w
 
+fly -t from-artifactory e -c ci/tasks/list-contents.xml -i artifactory-resource-source=./artifactory-resource-source
+
 
 fly -t from-artifactory delete-pipeline -p from-artifactory-pipeline
+```
 
+## Verify resource types
 
+```bash
 fly -t from-artifactory check-resource-type --resource-type from-artifactory-pipeline/artifactory
 fly -t from-artifactory check-resource-type --resource-type from-artifactory-pipeline/deploy-app-resource
 ```
