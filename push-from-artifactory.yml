@@ -5,22 +5,24 @@ resource_types:
     repository: emeraldsquad/artifactory-resource
 
 resources:
+- name: councourse-it-sources
+  type: git
+  source:
+    uri: https://github.com/poprygun/concourse-it.git
 - name: artifactory-repo
   type: artifactory
-  source:  
   source: 
     api_key: ((artifactory-api-key))
     artifact_id: concourse-it
     group_id: io.microsamples.cd
     host: "http://172.18.0.1:8081/artifactory"
     repository_id: concourse-it-repo
-
 - name: deploy-app-resource
   type: cf
   source:
     api: https://api.run.pivotal.io
     username: ((cf-user))    
-    passowrd: ((cf-password))
+    password: ((cf-password))
     organization: ((cf-org))    
     space: ((cf-space))
     skip_cert_check: true
@@ -30,7 +32,22 @@ jobs:
   plan:
   - get: artifactory-repo
     trigger: true
+  - get: councourse-it-sources
+  - task: list-repo-content
+    config:
+      platform: linux
+      inputs:
+      - name: artifactory-repo
+      image_resource:
+        type: docker-image
+        source: { repository: ubuntu }
+      run:
+        path: sh
+        args:
+        - -exc
+        - |
+          ls -R ./artifactory-repo  
   - put: deploy-app-resource
     params:
-      manifest: artifactory-repo/manifest.yml
-      path: concourse-it.jar
+      manifest: councourse-it-sources/manifest.yml
+      path: artifactory-repo/concourse-it-0.0.1.jar

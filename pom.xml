@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>io.microsamples.cd</groupId>
 	<artifactId>concourse-it</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>concourse-it</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -37,6 +37,7 @@
 	</dependencies>
 
 	<build>
+	<finalName>concourse-it</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

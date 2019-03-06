@@ -1,6 +1,6 @@
 ---
 applications:
-- name: my-app
+- name: concourse-it
   memory: 1024M
   instances: 1
   path: target/concourse-it.jar
