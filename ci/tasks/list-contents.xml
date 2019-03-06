@@ -5,11 +5,11 @@ image_resource:
   source: { repository: ubuntu }
 
 inputs:
-- name: artifactory-resource-source
+- name: artifactory-repo
 
 run:
   path: sh
   args:
   - -exc
   - |
-      ls -R ./artifactory-resource-source
+      ls -R ./artifactory-repo
