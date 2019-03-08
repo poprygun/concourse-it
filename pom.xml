@@ -36,6 +36,19 @@
 		</dependency>
 	</dependencies>
 
+	    <distributionManagement>
+        <repository>
+            <id>concourse-it-releases</id>
+            <name>concourse-it-releases</name>
+            <url>http://127.0.0.1:8081/artifactory/concourse-it-repo</url>
+        </repository>
+        <snapshotRepository>
+            <id>concourse-it-snapshots</id>
+            <name>concourse-it-snapshots</name>
+            <url>http://127.0.0.1:8081/artifactory/concourse-it-repo</url>
+        </snapshotRepository>
+    </distributionManagement>
+
 	<build>
 	<finalName>concourse-it</finalName>
 		<plugins>
