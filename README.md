@@ -64,6 +64,8 @@ fly -t from-artifactory e -c ci/tasks/list-contents.xml -i artifactory-resource-
 ## Cleanup
 
 ```bash
+fly -t from-artifactory volumes
+fly -t from-artifactory clear-task-cache -j from-artifactory-pipeline/trigger-when-new-file-is-added-to-artifactory -s artifactory-repo
 fly -t from-artifactory destroy-pipeline -p from-artifactory-pipeline
 ```
 

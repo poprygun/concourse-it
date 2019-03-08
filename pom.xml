@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>io.microsamples.cd</groupId>
 	<artifactId>concourse-it</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<name>concourse-it</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -40,12 +40,12 @@
         <repository>
             <id>concourse-it-releases</id>
             <name>concourse-it-releases</name>
-            <url>http://127.0.0.1:8081/artifactory/concourse-it-repo</url>
+            <url>http://127.0.0.1:8081/artifactory/concourse-it-repo/</url>
         </repository>
         <snapshotRepository>
             <id>concourse-it-snapshots</id>
             <name>concourse-it-snapshots</name>
-            <url>http://127.0.0.1:8081/artifactory/concourse-it-repo</url>
+            <url>http://127.0.0.1:8081/artifactory/concourse-it-repo/</url>
         </snapshotRepository>
     </distributionManagement>
 
